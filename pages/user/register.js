@@ -22,11 +22,24 @@ export default function register() {
                         <Form.Label style={{textAlign:'left'}}>Check Password</Form.Label>
                         <Form.Control type="password" placeholder="Check Password" />
                     </Form.Group>
-                    <Button style={{float:'right', marginTop:'5%'}}>
+                    <Button style={{float:'right', marginTop:'5%'}} onClick={componentDidMount}>
                         Register
                     </Button>
                 </Form>
             </div>
         </Layout>
     )
+}
+
+async function componentDidMount(e) {
+    e.preventDefault();
+    console.log(e)
+    // POST request using fetch with async/await
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+    const response = await fetch('/api/firebase', requestOptions);
+    const data = await response.json();
 }
